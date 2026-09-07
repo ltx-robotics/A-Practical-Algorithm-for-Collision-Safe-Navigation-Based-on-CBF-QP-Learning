@@ -1,5 +1,7 @@
 [Watch the project demonstration on Bilibili](https://www.bilibili.com/video/BV1MFbK6zEG5/?)
 
+[English](README.md) | [简体中文](README_zh-CN.md)
+
 > **Source-code release:** This repository includes source code, configuration files, tests, and documentation. Pretrained checkpoints, experiment logs/results, plots, videos, and binary mesh assets are not included. Train a policy before running checkpoint-based evaluation or deployment. The Webots visual model references `webots_alvik/meshes/alvik_reference_design.stl`, which must be supplied separately.
 
 # SAC / CBF-QP for the real Arduino Alvik
