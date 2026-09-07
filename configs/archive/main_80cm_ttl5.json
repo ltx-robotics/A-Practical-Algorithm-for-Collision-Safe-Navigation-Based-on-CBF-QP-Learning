@@ -1,0 +1,111 @@
+{
+  "_comment": "ARCHIVED: the exact configuration behind runs_g4/ (TTL 5.0 s). Kept so those results stay reproducible after the TTL correction. Do not use for new runs; see configs/main_80cm.json and PLAN.MD 11.2.7.",
+  "map": {
+    "half_extent_m": 0.4,
+    "start_pose": [
+      -0.26,
+      -0.26,
+      0.0
+    ],
+    "goal_position": [
+      0.26,
+      0.26
+    ],
+    "controller_goal_radius_m": 0.05,
+    "success_radius_m": 0.07,
+    "consider_map_boundary": false
+  },
+  "robot": {
+    "body_radius_m": 0.066,
+    "obstacle_margin_m": 0.03,
+    "look_ahead_m": 0.03,
+    "max_linear_mps": 0.03,
+    "max_angular_rps": 0.436332,
+    "control_dt_s": 0.2,
+    "max_episode_steps": 300
+  },
+  "cbf": {
+    "enabled": true,
+    "alpha": 1.0,
+    "robust_velocity_mps": 0.006,
+    "weight_linear": 2.0,
+    "weight_angular": 1.0
+  },
+  "obstacles": {
+    "radius_range_m": [
+      0.04,
+      0.07
+    ],
+    "blocking_probability": 0.85,
+    "min_surface_gap_m": 0.02,
+    "start_goal_clearance_m": 0.03
+  },
+  "reward": {
+    "progress_coeff": 30.0,
+    "step_distance_penalty": 0.01,
+    "goal_bonus": 50.0,
+    "collision_penalty": 60.0,
+    "timeout_penalty": 15.0
+  },
+  "sac": {
+    "hidden_sizes": [
+      256,
+      256
+    ],
+    "batch_size": 256,
+    "gamma": 0.99,
+    "tau": 0.005,
+    "alpha_min": 0.01,
+    "start_steps": 5000,
+    "replay_capacity": 100000
+  },
+  "train": {
+    "total_steps": 200000,
+    "eval_interval": 25000,
+    "eval_episodes": 100,
+    "stage_eval_episodes": 30,
+    "checkpoint_interval": 25000,
+    "holdout_seed_start": 1000,
+    "holdout_n_obstacles_min": 1,
+    "holdout_n_obstacles_max": 2,
+    "holdout_blocking_probability": 1.0
+  },
+  "curriculum": [
+    {
+      "name": "S0_goal_only",
+      "until_step": 40000,
+      "n_obstacles_min": 0,
+      "n_obstacles_max": 0,
+      "randomize_start_goal": true,
+      "start_distance_range_m": [
+        0.3,
+        0.735
+      ],
+      "promote_min_success": 0.8,
+      "promote_max_collision": 1.0
+    },
+    {
+      "name": "S1_single_obstacle",
+      "until_step": 100000,
+      "n_obstacles_min": 1,
+      "n_obstacles_max": 1,
+      "randomize_start_goal": false,
+      "start_pose_jitter_m": 0.02,
+      "start_heading_jitter_deg": 10.0,
+      "promote_min_success": 0.6,
+      "promote_max_collision": 0.1
+    },
+    {
+      "name": "S2_one_to_two",
+      "until_step": 200000,
+      "n_obstacles_min": 1,
+      "n_obstacles_max": 2,
+      "randomize_start_goal": false,
+      "start_pose_jitter_m": 0.02,
+      "start_heading_jitter_deg": 10.0
+    }
+  ],
+  "memory": {
+    "ttl_s": 5.0
+  }
+}

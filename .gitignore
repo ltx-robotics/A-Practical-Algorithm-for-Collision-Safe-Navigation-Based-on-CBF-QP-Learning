@@ -1,0 +1,42 @@
+# Local secrets
+.env
+.env.*
+!.env.example
+wifi_secrets.py
+*.pem
+*.key
+
+# Python caches and environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Generated runs, measurements, and model weights
+runs*/
+results/
+real_robot/logs/
+webots_alvik/outputs/
+*.pt
+*.pth
+*.onnx
+*.npz
+*.npy
+*.csv
+*.log
+
+# Media and non-code assets
+*.mp4
+*.avi
+*.mov
+*.png
+*.jpg
+*.jpeg
+*.pdf
+*.stl
+*.wbproj
+
+# Generated visualization summaries
+seeds5_ttl8_visualization/*.json
+seeeds_total5_visualization/*.json

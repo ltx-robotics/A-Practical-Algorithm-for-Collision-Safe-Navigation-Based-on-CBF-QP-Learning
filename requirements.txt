@@ -1,0 +1,6 @@
+# Pinned for the local `pytorch` conda env (Python 3.9, torch 1.12.0+cu116).
+# numpy is held below 2.x because torch 1.12 binaries cannot use NumPy 2.
+numpy<2
+torch>=1.12
+scipy>=1.7
+matplotlib>=3.4

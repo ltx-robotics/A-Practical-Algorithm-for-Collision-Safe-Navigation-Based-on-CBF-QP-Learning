@@ -1,0 +1,27 @@
+{
+  "_comment": "Gate G2 (PLAN.MD 11.2): obstacle-free goal navigation only. The held-out set is the fixed paper start/goal with no obstacles. Full-scale training must not start until this reaches >= 0.80 success and <= 0.07 m mean final distance, because that is exactly where the previous two attempts failed.",
+  "sac": {
+    "start_steps": 5000
+  },
+  "train": {
+    "total_steps": 50000,
+    "eval_interval": 5000,
+    "eval_episodes": 50,
+    "stage_eval_episodes": 30,
+    "checkpoint_interval": 10000,
+    "holdout_seed_start": 1000,
+    "holdout_n_obstacles_min": 0,
+    "holdout_n_obstacles_max": 0,
+    "holdout_blocking_probability": 0.0
+  },
+  "curriculum": [
+    {
+      "name": "S0_goal_only",
+      "until_step": 50000,
+      "n_obstacles_min": 0,
+      "n_obstacles_max": 0,
+      "randomize_start_goal": true,
+      "start_distance_range_m": [0.3, 0.735]
+    }
+  ]
+}

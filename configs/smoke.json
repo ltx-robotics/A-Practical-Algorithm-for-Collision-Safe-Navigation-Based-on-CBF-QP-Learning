@@ -1,0 +1,37 @@
+{
+  "train": {
+    "total_steps": 600,
+    "eval_interval": 300,
+    "eval_episodes": 3,
+    "stage_eval_episodes": 2,
+    "checkpoint_interval": 300,
+    "log_interval": 100
+  },
+  "sac": {
+    "start_steps": 100,
+    "batch_size": 32,
+    "replay_capacity": 2000,
+    "hidden_sizes": [64, 64]
+  },
+  "robot": {
+    "max_episode_steps": 60
+  },
+  "curriculum": [
+    {
+      "name": "S0_goal_only",
+      "until_step": 200,
+      "n_obstacles_min": 0,
+      "n_obstacles_max": 0,
+      "randomize_start_goal": true,
+      "promote_min_success": 0.0,
+      "promote_max_collision": 1.0
+    },
+    {
+      "name": "S2_one_to_two",
+      "until_step": 600,
+      "n_obstacles_min": 1,
+      "n_obstacles_max": 2,
+      "randomize_start_goal": false
+    }
+  ]
+}
